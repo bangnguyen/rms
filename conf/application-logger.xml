@@ -1,0 +1,39 @@
+<configuration>
+    <conversionRule conversionWord="coloredLevel" converterClass="play.api.Logger$ColoredLevel"/>
+
+    <appender name="SYSLOG" class="ch.qos.logback.classic.net.SyslogAppender">
+        <syslogHost>localhost</syslogHost>
+        <facility>Local3</facility>
+        <port>514</port>
+        <suffixPattern>RMS-${ENVIRONMENT} [%thread] %-5level %logger{36} - %m %throwable{5}%n</suffixPattern>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${application.home}/logs/application.log</file>
+        <encoder>
+            <pattern>%date - [%level] - from %logger in %thread %n%message%n%xException%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%coloredLevel %logger{15} - %message%n%xException{5}</pattern>
+        </encoder>
+    </appender>
+
+
+    <logger name="play" level="INFO">
+        <appender-ref ref="SYSLOG"/>
+    </logger>
+
+    <logger name="application" level="INFO">
+        <appender-ref ref="SYSLOG"/>
+    </logger>
+
+
+    <root level="ERROR">
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>

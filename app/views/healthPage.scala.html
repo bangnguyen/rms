@@ -1,0 +1,50 @@
+@(params: Map[String,Any], results : Seq[Map[String,Any]])
+
+@main("Health page") {
+    <style>
+        .error {
+            color: red;
+        }
+        .success {color: #5cb85c;}
+        .title {font-weight: bold;}
+    </style>
+    @params.get("info").get <br/>
+    Cassandra connection status : @params.get("cStatus").get <br/>
+    Elasticsearch connection status : @params.get("eStatus").get <br/>
+
+    <div id="results-all-api">
+        <ul >
+            @for(item <- results) {
+                <li>
+                    <div>
+                    @if(item.get("isSuccess").get == true) {
+                        <h3 class = "success" >
+                            <span>[Success]</span>
+                            Get @item.get("entity") (limit 10)</h3>
+                        <ul>
+                            <li><span class="title">Method</span>: @item.get("method")</li>
+                            <li><span class="title">Url</span>: @item.get("url")</li>
+                            <li><span class="title">Return code</span>: @item.get("code")</li>
+                            <li><span class="title">Time response</span>: @item.get("time") ms</li>
+                            <li><span class="title">Data response</span>: @item.get("data").get.asInstanceOf[List[Any]].length objects</li>
+                        </ul>
+                    } else {
+                        <h3 class = "error" >
+                            <span>[Error]</span>
+                            Get @item.get("entity") (limit 10)</h3>
+                        <ul>
+                            <li><span class="title">Method</span>: @item.get("method")</li>
+                            <li><span class="title">Url</span>: @item.get("url")</li>
+                            <li><span class="title">Return code</span>: @item.get("code")</li>
+                            <li><span class="title">Time response</span>: @item.get("time") ms</li>
+                            <li><span class="title">Cause </span>: @item.get("cause")</li>
+                        </ul>
+                    }
+                    </div>
+                    <br/>
+
+                </li>
+            }
+        </ul>
+    </div>
+}

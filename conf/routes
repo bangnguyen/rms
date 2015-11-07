@@ -1,0 +1,87 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET           /                              controllers.Application.index
+
+# Map static resources from the /public folder to the /assets URL path
+GET           /assets/*file                  controllers.Assets.at(path="/public", file)
+
+
+
+# -------------------------------
+# Mock APIs
+# ------------------------------
+
+# Careers
+GET           /careers                       controllers.Application.list(entity="career")
+GET           /careers/:id                   controllers.Application.get(entity="career", id)
+GET           /careers/:id/jobs              controllers.Application.getRelated(entity1="career", entity2="job", id)
+GET           /careers/:id/skills            controllers.Application.getRelated(entity1="career", entity2="skill", id)
+POST          /careers                       controllers.Application.create(entity="career")
+PUT           /careers/:id                   controllers.Application.update(entity="career", id)
+PUT           /careers/:id/jobs              controllers.Application.addRelated(entity1="career", entity2="job", id)
+PUT           /careers/:id/skills            controllers.Application.addRelated(entity1="career", entity2="skill", id)
+DELETE        /careers/:id                   controllers.Application.delete(entity="career", id)
+
+# Categories
+GET           /categories                    controllers.Application.list(entity="category")
+GET           /categories/:id                controllers.Application.get(entity="category", id)
+GET           /categories/:id/careers        controllers.Application.getRelated(entity1="category", entity2="career", id)
+GET           /categories/:id/courses        controllers.Application.getRelated(entity1="category", entity2="course", id)
+GET           /categories/:id/skills         controllers.Application.getRelated(entity1="category", entity2="skill", id)
+POST          /categories                    controllers.Application.create(entity="category")
+PUT           /categories/:id                controllers.Application.update(entity="category", id)
+PUT           /categories/:id/careers        controllers.Application.addRelated(entity1="category", entity2="career", id)
+PUT           /categories/:id/courses        controllers.Application.addRelated(entity1="category", entity2="course", id)
+PUT           /categories/:id/skills         controllers.Application.addRelated(entity1="category", entity2="skill", id)
+DELETE        /categories/:id                controllers.Application.delete(entity="category", id)
+# Courses
+GET           /courses                       controllers.Application.list(entity="course")
+GET           /courses/:id                   controllers.Application.get(entity="course", id)
+GET           /courses/:id/skills            controllers.Application.getRelated(entity1="course", entity2="skill", id)
+POST          /courses                       controllers.Application.create(entity="course")
+PUT           /courses/:id                   controllers.Application.update(entity="course", id)
+PUT           /courses/:id/skills            controllers.Application.addRelated(entity1="course", entity2="skill", id)
+DELETE        /courses/:id                   controllers.Application.delete(entity="course", id)
+
+# Jobs
+GET           /jobs                          controllers.Application.list(entity="job")
+GET           /jobs/:id                      controllers.Application.get(entity="job", id)
+GET           /jobs/:id/careers              controllers.Application.getRelated(entity1="job", entity2="career", id)
+GET           /jobs/:id/skills               controllers.Application.getRelated(entity1="job", entity2="skill", id)
+POST          /jobs                          controllers.Application.create(entity="job")
+PUT           /jobs/:id                      controllers.Application.update(entity="job", id)
+PUT           /jobs/:id/careers              controllers.Application.addRelated(entity1="job", entity2="career",id)
+PUT           /jobs/:id/skills               controllers.Application.addRelated(entity1="job", entity2="skill",id)
+DELETE        /jobs/:id                      controllers.Application.delete(entity="job", id)
+
+# Skills
+GET           /skills                        controllers.Application.list(entity="skill")
+GET           /skills/:id                    controllers.Application.get(entity="skill", id)
+GET           /skills/:id/jobs               controllers.Application.getRelated(entity1="skill", entity2="job", id)
+GET           /skills/:id/careers            controllers.Application.getRelated(entity1="skill", entity2="career", id)
+GET           /skills/:id/skills             controllers.Application.getRelated(entity1="skill", entity2="skill", id)
+POST          /skills                        controllers.Application.create(entity="skill")
+PUT           /skills/:id/skills             controllers.Application.addRelated(entity1="skill", entity2="skill",id)
+PUT           /skills/:id/careers            controllers.Application.addRelated(entity1="skill", entity2="career",id)
+PUT           /skills/:id                    controllers.Application.update(entity="skill", id)
+DELETE        /skills/:id                    controllers.Application.delete(entity="skill", id)
+
+# Settings
+GET           /settings                      controllers.Application.settings
+POST          /settings                      controllers.Application.updateSettings
+
+
+#Index
+POST          /admin/reindex                 controllers.Application.reindex
+
+
+
+
+
+
+
+
+

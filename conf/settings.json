@@ -1,0 +1,23 @@
+{
+  "cassandra" : {
+    "storage" : "network",
+    "local" : {
+      "dir" : ""
+    },
+    "network" : {
+      "hostname" : "localhost",
+      "keyspace" : "demo"
+    }
+  },
+  "es" : {
+    "storage" : "network",
+    "local" : {
+      "dir" : "${ES_DIR}"
+    },
+    "network" : {
+      "hostname" : "localhost",
+      "cluster" : "bangelastic",
+      "index_name" : "demo"
+    }
+  }
+}
